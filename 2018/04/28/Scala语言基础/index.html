@@ -7,19 +7,21 @@
   
   
   
-  <title>test_my_site | 隆之汇聚</title>
+  <title>Scala语言基础 | 隆之汇聚</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java web，前端，微信小程序，大数据知识总结。">
+  <meta name="description" content="Scala语言基础概念及用法 ##函数的参数：函数参数值得求值策略（call by value、call by name） ###函数参数值得求值策略    call by value：对函数的实参求值，仅求一次        举例：使用：        def test1(x:Int,y:Int):Int = x + x        调用：test1(3+4,8)    call by nam">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test_my_site">
-<meta property="og:url" content="http://yoursite.com/2018/04/28/test-my-site/index.html">
+<meta property="og:title" content="Scala语言基础">
+<meta property="og:url" content="http://yoursite.com/2018/04/28/Scala语言基础/index.html">
 <meta property="og:site_name" content="隆之汇聚">
-<meta property="og:description" content="java web，前端，微信小程序，大数据知识总结。">
+<meta property="og:description" content="Scala语言基础概念及用法 ##函数的参数：函数参数值得求值策略（call by value、call by name） ###函数参数值得求值策略    call by value：对函数的实参求值，仅求一次        举例：使用：        def test1(x:Int,y:Int):Int = x + x        调用：test1(3+4,8)    call by nam">
 <meta property="og:locale" content="Java Scala">
-<meta property="og:updated_time" content="2018-04-28T13:42:22.730Z">
+<meta property="og:image" content="http://yoursite.com/2018/04/28/Scala语言基础/1521959749728.png">
+<meta property="og:updated_time" content="2018-04-28T15:26:21.578Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test_my_site">
-<meta name="twitter:description" content="java web，前端，微信小程序，大数据知识总结。">
+<meta name="twitter:title" content="Scala语言基础">
+<meta name="twitter:description" content="Scala语言基础概念及用法 ##函数的参数：函数参数值得求值策略（call by value、call by name） ###函数参数值得求值策略    call by value：对函数的实参求值，仅求一次        举例：使用：        def test1(x:Int,y:Int):Int = x + x        调用：test1(3+4,8)    call by nam">
+<meta name="twitter:image" content="http://yoursite.com/2018/04/28/Scala语言基础/1521959749728.png">
   
     <link rel="alternative" href="/atom.xml" title="隆之汇聚" type="application/atom+xml">
   
@@ -276,11 +278,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-test-my-site" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Scala语言基础" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/04/28/test-my-site/" class="article-date">
-      <time datetime="2018-04-28T13:42:22.000Z" itemprop="datePublished">2018-04-28</time>
+      <a  href="/2018/04/28/Scala语言基础/" class="article-date">
+      <time datetime="2018-04-28T15:23:53.000Z" itemprop="datePublished">2018-04-28</time>
 </a>
 
     </div>
@@ -294,7 +296,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      test_my_site
+      Scala语言基础
     </h1>
   
 
@@ -312,7 +314,83 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <p>Scala语言基础概念及用法</p>
+<p>##函数的参数：函数参数值得求值策略（call by value、call by name）</p>
+<p>###函数参数值得求值策略<br>    call by value：对函数的实参求值，仅求一次<br>        举例：使用：<br>        def test1(x:Int,y:Int):Int = x + x<br>        调用：test1(3+4,8)<br>    call by name：函数的实参每次在函数体内部被调用到，都会求值<br>        举例：使用： =&gt;<br>        def test2(x:=&gt; Int,y:=&gt; Int):Int = x + x<br>        调用：test2(3+4,8)<br>        注意：执行的过程不一样的<br>        稍微复杂一点的例子：<br>        x是call by value y是call by name<br>        def bar(x:Int,y: =&gt; Int): Int =1<br>        定义个死循环<br>        def loop():Int =loop<br>        调用：输出什么<br>        bar(1,loop)<br>        bar(loopm,1)</p>
+<p>###函数的参数</p>
+<p>####默认参数<br>    def func1(name:String=”Tom”):String = “Hello0”+name<br>    调用<br>    func1（）</p>
+<p>####代名参数<br>    def func2(str:String=”Good Morning”,name:String=”Tom”,age:Int=20):String = str + name +”and the age of “ + name + “ is “ + age<br>    //调用<br>    func2()<br>    func2(age=25)</p>
+<p>####可变参数<br>    def sum(args:Int*) ={<br>        var result =0<br>        for(arg &lt;- args) result +=arg<br>        result<br>    }<br>    sum(1,2,3)</p>
+<p>##懒值（lazy值）<br>    如果一个变量是lazy，他的处事话会被推迟，直到第一次被调用<br>    举例：<br>        val x:Int=10<br>        val y:Int=x + 10<br>        z<br>        复杂的一个例子：读取一个文件（存在和不存在的区别）<br>        val words = scala.io.Source.fromFile(“d:\temp\a.txt”).mkString<br>        lazy val words1 = scala.io.Source.fromFile(“d:\temp\a.txt”).mkString<br><img src="./1521959749728.png" alt="Alt text"></p>
+<p>##异常Exceptiopn：类似java(也是使用throw抛出异常)<br>    问题：java（scala）异常处理机制是什么？<br>        采用的是向上处理机制</p>
+<p>##数组、映射、元组——-</p>
+<p>###数组<br>    import scala.collection.mutable.ArrayBuffer<br>    //Scala数组</p>
+<pre><code>//类型一：定长数组 Array
+val a = new Array[Int](10)
+val b = new Array[String](3)
+var c = Array(&quot;Tom&quot;,&quot;Mary&quot;,&quot;Mike&quot;)
+
+//类型二：变长数组 ArrayBuffer
+val d = new ArrayBuffer[Int]()
+//往变长数组中添加元素
+d += 1
+d += 2
+d += 3
+d += 4
+d += 5
+
+//一次添加多个元素
+d += (10,20,30)
+d.trimEnd(2) //去掉尾部的两个元素
+
+
+//把ArrayBuffer --&gt; Array
+d.toArray
+
+//遍历数组
+//foreach 没有返回值；map有一个返回值
+d.foreach(println)
+d.map(println)
+
+//常见的数组的操作
+val myArray = Array(1,100,10,24,5,57)
+
+//最大、最小、求和
+myArray.max
+myArray.min
+myArray.sum
+
+//排序: 以下两个排序是一样
+myArray.sortWith(_ &gt; _)
+myArray.sortWith(_ &lt; _)
+
+//完整一点
+myArray.sortWith((a,b)=&gt;{
+  if(a &gt; b)
+true
+  else
+false
+})
+</code></pre><p>###映射：就是key，value的map集合</p>
+<p>###元组</p>
+<p>##面向对象的基本概念：<br>    定义：<br>        把数据和操作数据的方法放到一起，作为一个整体（类class）<br>    面向对象的特征：<br>        封装、继承、多态</p>
+<p>##定义类：class ，没有类的修饰符：public、protected、private（Object类的名称可以和clss类的名称一样，Object类就叫class类的伴生对象）</p>
+<p>##属性的get喝set方法</p>
+<p>##嵌套类（内部类）</p>
+<p>##构造器：主构造器、辅助构造器<br>    1、主构造器：和类的申明在一起，只能有一个构造器<br>    class Student3(val stuName:String,val stuAge:Int) {<br>      }<br>    2、辅助构造器：多个辅助构造器，通过关键字：this<br>    class Student3(val stuName:String,val stuAge:Int) {<br>      def this(age:Int){<br>      this(“No Nmae”,age)<br>      }</p>
+<p>##Object对象：相当于static关键字</p>
+<p>###1、单列模式：一个类只有一个对象</p>
+<p>###2、应用程序对象：App—–》可以省略main方法</p>
+<p>##类的apply的方法：省略new关键字<br>    举例：</p>
+<p>##继承 extends</p>
+<p>###1、基本的继承</p>
+<p>###2、复写父类中的方法</p>
+<p>###3、使用匿名子类</p>
+<p>###4、抽象类、抽象字段<br>    抽象类：包含抽象方法，抽象类只能用来继承<br>    抽象字段：就是没有初始值的字段</p>
+<p>##特质trait：有点像接口也有点像抽象类（支持多重继承）</p>
+<pre><code>支持多重继承
+</code></pre><p>##包和包对象</p>
+
       
     </div>
     
@@ -320,13 +398,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2018/04/28/test-my-site/">test_my_site</a></p>
+        <p><span>本文标题:</span><a  href="/2018/04/28/Scala语言基础/">Scala语言基础</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Aaron 的个人博客">Aaron</a></p>
-        <p><span>发布时间:</span>2018年04月28日 - 21时42分</p>
-        <p><span>最后更新:</span>2018年04月28日 - 21时42分</p>
+        <p><span>发布时间:</span>2018年04月28日 - 23时23分</p>
+        <p><span>最后更新:</span>2018年04月28日 - 23时26分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/04/28/test-my-site/" title="test_my_site">http://yoursite.com/2018/04/28/test-my-site/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/04/28/test-my-site/　　作者: Aaron" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/04/28/Scala语言基础/" title="Scala语言基础">http://yoursite.com/2018/04/28/Scala语言基础/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/04/28/Scala语言基础/　　作者: Aaron" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -337,18 +415,9 @@
 
 <nav id="article-nav">
   
-    <a  href="/2018/04/28/myfist/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          myfist
-        
-      </div>
-    </a>
   
-  
-    <a  href="/2018/04/27/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a  href="/2018/04/28/myfist/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">myfist</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -433,13 +502,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2018/04/28/myfist/" title="上一篇: myfist">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2018/04/27/hello-world/" title="下一篇: Hello World">
+            <a  href="/2018/04/28/myfist/" title="下一篇: myfist">
                 <i class="fa fa-angle-right"></i>
             </a>
         
